@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindTrack Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>MindTrack Admin Dashboard</h1>
+        <div class="header-controls">
+            <select id="yearSelector">
+                <option value="2025">2025</option>
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+            </select>
+            <button class="apply-btn" onclick="refreshData()">Refresh Data</button>
+            <!-- NEW: Logout Button -->
+            <button class="logout-btn" onclick="logout()">Log Out</button>
+        </div>
+    </header>
+
+    <!-- Top Metrics Section -->
+    <section class="metrics">
+        <div class="card metric-card">
+            <!-- Renamed to CGPA -->
+            <h2>Average CGPA</h2>
+            <p id="avgGPA" class="value">7.63</p>
+            <small>Trend: +0.05 vs last year</small>
+        </div>
+        <div class="card metric-card">
+            <h2>Average Attendance</h2>
+            <p id="avgAttendance" class="value">87%</p>
+            <small>On-time attendance across all courses</small>
+        </div>
+        <div class="card metric-card">
+            <h2>Average Stress Score</h2>
+            <p id="avgStress" class="value">42%</p>
+            <small>Self-reported & survey derived</small>
+        </div>
+        <div class="card metric-card">
+            <h2>Average Sleep (hrs)</h2>
+            <p id="avgSleep" class="value">6.3</p>
+            <small>Daily average (all months)</small>
+        </div>
+    </section>
+
+    <!-- Main Dashboard Grid -->
+    <div class="main-dashboard-grid">
+
+        <!-- 1. Yearly CGPA Trend (Left, Top) -->
+        <div class="chart-card yearly-gpa">
+            <h2>Yearly CGPA Trend</h2>
+            <canvas id="gpaChart"></canvas>
+        </div>
+
+        <!-- 2. Sleep vs CGPA (Right, Top) -->
+        <div class="chart-card sleep-gpa">
+            <h2>Sleep vs CGPA</h2>
+            <canvas id="sleepGpaChart"></canvas>
+        </div>
+
+        <!-- 3. Attendance Trend (Left, Bottom) -->
+        <div class="chart-card attendance-trend">
+            <h2>Attendance Trend (Monthly)</h2>
+            <canvas id="attendanceChart"></canvas>
+        </div>
+
+        <!-- 4. Stress vs Sleep (Right, Bottom) -->
+        <div class="chart-card stress-sleep">
+            <h2>Stress vs Sleep</h2>
+            <canvas id="stressSleepChart"></canvas>
+        </div>
+
+    </div>
+
+    <!-- Predictive Risk & Alerts Section -->
+    <section class="risk-card">
+        <div class="risk-summary">
+            <h2>Predictive Risk & Alerts</h2>
+            <div class="risk-score" id="riskScore">48%</div>
+            <small>Risk Probability (composite)</small>
+            <p>Thresholds: &lt;30 Low • 30-60 Medium • 60+ High</p>
+        </div>
+        <div class="risk-details">
+            <div class="risk-header">
+                <h3>Top Flagged Students</h3>
+                <p>Model: Multivariate Regression + Tree Ensemble</p>
+            </div>
+            <table class="risk-table">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Year</th>
+                        <th>Risk Score</th>
+                        <th>Category</th>
+                        <th>Suggested Action</th>
+                    </tr>
+                </thead>
+                <tbody id="riskTableBody">
+                    <!-- Data will be rendered here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <p>Data Source: LMS • Attendance DB • Surveys • Wearables | Last Updated: <span id="lastUpdated">N/A</span></p>
+    </footer>
+    <!-- Include API configuration first -->
+    <script src="../../config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

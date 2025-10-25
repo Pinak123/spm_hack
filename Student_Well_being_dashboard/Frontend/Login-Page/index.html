@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="toggle-mode" id="modeToggle">Dark Mode</button>
+  <div class="container">
+    <h1 class="title">MindTrack Login Portal</h1>
+
+    <div class="tabs">
+      <button class="tab active" id="studentTab">Student Login</button>
+      <button class="tab" id="adminTab">Admin Login</button>
+    </div>
+
+    <!-- Student Login -->
+    <form id="studentForm" class="login-form active">
+      <input type="text" id="studentUsername" placeholder="Student ID" required>
+      <input type="password" id="studentPassword" placeholder="Password" required>
+      <button type="submit" id="studentLogin">Login</button>
+    </form>
+
+    <!-- Admin Login -->
+    <form id="adminForm" class="login-form">
+      <input type="text" id="adminUsername" placeholder="Admin Username" required>
+      <input type="password" id="adminPassword" placeholder="Password" required>
+      <button type="submit" id="adminLogin">Login</button>
+    </form>
+    
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
